@@ -1,0 +1,176 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+body{
+	height: 100vh;
+	color: #fafafa;
+	background: radial-gradient(#000, #a0a0a0, #000);
+	margin-top: 40px;
+}
+hr {
+	height: 100vh;
+}
+div.container{
+	display:flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-direction: column;
+	position: absolute;
+	overfollow: auto;
+	z-index: 0;
+	top: 85px;
+	width: 95%;
+}
+div.container2{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.wrapper{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid blue;
+	width: 100%;
+	padding: 20px;
+}
+.column{
+	display:flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	width: 75%;
+	border: 1px solid #333;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+}
+.feedWidth{
+	width: 100%;
+}
+div.feedWidth{
+	margin: 10px 0;
+}
+.text{
+	width: 100%;
+}
+input{
+	height: 25px;
+	padding: 3px;
+}
+div.column{
+	width: 50%;
+}
+
+div.column form input{
+	width: 100%;
+	font-size: 16px;
+	color: #fafafa;
+	background: #333;
+	border: none;
+}
+.title{
+	font-family: 'My Soul', cursive;
+	font-size: 30px;
+	margin: 10px;
+}
+h1.title{
+	font-size: 45px;
+}
+
+.column:hover{
+	border: 1px solid #fafafa;
+}
+textarea{
+	width: 100%;
+	height: 5rem;
+	margin-top: 10px;
+}
+
+.btn{
+	width: 6rem;
+	color: #fafafa;
+	background: #333;
+	text-align: center;
+	border-radius: 7px;
+	padding: 0 5px 5px 5px;
+}
+.btn:hover{
+	color: #333;
+	background: #fafafa;
+}
+
+.hilite {
+	border: 1px solid #333;
+  	border-radius: 5px;
+}
+div.hilite:hover, div.item10 a:hover{
+	color: #333;
+	background: #fafafa;
+}
+
+.error{
+	color: red;
+}
+.rBorder{
+	border-right: 1px solid #fafafa;
+}
+.lBorder{
+	border-left: 1px solid #fafafa;
+}
+.tBorder{
+	border-top: 1px solid #fafafa;
+}
+.bBorder{
+	border-bottom: 1px solid #fafafa;
+}
+
+ul{
+	list-style:none;	
+}
+nav.sidebar{
+	color: #fafafa;
+	height: 100vh;
+	position: fixed;
+	top: 55px;
+	overflow: auto;
+	padding: 0 10px;
+
+}
+nav.sidebar ul li a{
+	text-decoration: none;
+	color: #fafafa;
+	font-size: 16;
+}
+nav.sidebar ul li{
+	padding: 5px 0;
+	margin: 5px 0;
+}
+nav.sidebar h3{
+	padding: 20px 0;
+	margin: 10px 0;
+}
+nav.sidebarLeft{
+	left:0;
+}
+nav.sidebarRight{
+	right:0;
+}
+
+footer{
+	background: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+	height: 30px;
+	width: 100%;
+	padding: 10px;
+}
