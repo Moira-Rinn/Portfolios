@@ -1,0 +1,178 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+body {
+  	background: rgba(0, 0, 0, 0.9);
+ 	margin: 0;
+  	color: #000;
+  	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+	margin-bottom: 2rem;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+	margin: 3rem 1rem 0 1rem;
+}
+
+ul {
+	list-style:none;	
+}
+li a {
+	font-size: 24px;
+	display: inline;
+}
+
+.showcase {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+}
+.showcase::after {
+  	content: '';
+  	height: 100vh;
+  	width: 100%;
+  	background-image: url("timeout_flowers_8-06-22.jpg");
+  	background-size: cover;
+  	background-repeat: no-repeat;
+ 	background-position: center;
+  	filter: blur(0px);
+  	-webkit-filter: blur(0px);
+  	transition: all 1000ms;
+}
+.showcase:hover::after {
+  	filter: blur(10px);
+  	-webkit-filter: blur(10px);
+}
+.showcase:hover .content {
+  	filter: blur(0px);
+  	-webkit-filter: blur(0px);
+}
+
+.content {
+	display:flex;
+	align-items: center;
+	flex-direction: column;
+  	position: absolute;
+  	z-index: 1;
+  	transition: all 1000ms;
+  	filter: blur(5px);
+  	-webkit-filter: blur(5px);
+}
+
+.intro {
+  	width: 500px;
+  	height: 350px;
+  	text-align: center;
+}
+
+.logo {
+  	height: 150px;
+  	width: 150px;
+}
+
+.content .title {
+  	font-size: 2rem;
+  	margin-top: 1rem;
+}
+.content .title span {
+	display: block;
+  	font-size: 2.5rem;
+  	margin-top: 1rem;
+  	font-family: 'My Soul', cursive;
+}
+.content .text {
+  	line-height: 1.7;
+  	margin-top: 1rem;
+}
+.container {
+  	max-width: 90%;
+  	padding: 0 1rem 4rem 1rem;
+  	margin-top: 2rem;
+  	color: #fafafa;
+}
+
+.grid-3 {
+  	display: grid;
+  	grid-gap: 20px;
+  	grid-template-columns: repeat(3, 1fr);
+  	grid-template-rows: repeat(3, 1fr);
+  	background: #fafafa;
+  	padding: 2rem;
+  	margin-top: 2rem;
+}
+.grid-3 div {
+	border: 1px solid #333;
+}
+
+.grid-2 {
+  	display: grid;
+  	grid-gap: 20px;
+  	grid-template-columns: repeat(4, 1fr);
+}
+.grid-2 a, .grid-2 a i {
+	color: #fafafa;
+	padding: 0 1rem;
+}
+.grid-2 a span {
+	display: block;
+}
+
+.center {
+  	text-align: center;
+  	margin: auto;
+}
+
+/* Small Screens */
+
+@media (max-width: 560px) {
+  	.showcase::after {
+  		height: 50vh;
+  	}
+
+  	.content {
+    	top: 5%;
+    	margin-top: 5px;
+  	}
+
+  	.content .logo {
+    	height: 140px;
+    	width: 140px;
+  	}
+
+  	.content .text {
+    	display: none;
+  	}
+
+  	.grid-3,
+  	.grid-2 {
+    	grid-template-columns: 1fr;
+  	}
+
+  	.services div {
+    	border-bottom: #333 dashed 1px;
+    	padding: 1.2rem 1rem;
+  	}
+}
+
+/* Landscape */
+@media (max-height: 500px) {
+  	.content .title,
+  	.content .text {
+    	display: none;
+  	}
+
+  	.content {
+    	top: 0;
+  	}
+}

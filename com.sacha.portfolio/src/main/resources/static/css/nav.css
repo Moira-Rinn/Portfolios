@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+
+nav div.wrapper{
+	justify-content: flex-end;
+}
+nav h3.title{
+	width: 70%;
+	font-family: 'My Soul', cursive;
+	font-size: 28px;
+}
+nav.nav{
+	display:flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 40px;
+  	position: fixed;
+  	top: 0;
+  	z-index: 1;
+	background: #333;
+	color: #fafafa;
+  	padding: 1.5rem;
+}
+nav.nav div.wrapper a{
+	color: #fafafa;
+	text-decoration: none;
+	text-align: center;
+	width: 30%;
+	font-size: 18px;
+	padding: 0 5px;
+}

@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+
+footer {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 40px;
+  	position: fixed;
+  	bottom: 0;
+  	z-index: 1;
+	background: #333;
+	color: #fafafa;
+  	padding: 1.5rem;
+}
+
+footer a {
+	text-decoration: none;
+	color: #bca0dc;
+}
+
+footer a:hover {
+	color: #fafafa;
+}
