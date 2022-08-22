@@ -1,13 +1,13 @@
 package com.sacha.portfolio.models;
 
-//import java.util.List;
+import java.util.List;
 
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="users")
 public class User {
+	
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -46,26 +47,28 @@ public class User {
     @Transient
     private String passwordConfirmation;
     
-    //If isCreator = true:
-    
     @NotBlank(message="Please Enter An Address")
 	private String address;
 	
     @NotBlank(message="Please Enter Valid Phone Number")
 	private String phone;
     
-
-//    @OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
-//    private List<Project> projects;
-    private String projects;
-    private String social;
+    private List<String> social;
     private String homePage;
     
-//    @OneToMany(mappedBy="poster", fetch=FetchType.LAZY)
-//    private List<Apartment> apartments;
-//
-//    @OneToMany(mappedBy ="user", fetch=FetchType.LAZY)
-//   	private List<Possible> possibles;
+    @OneToMany(mappedBy="createdBy", fetch=FetchType.LAZY)
+    private List<Project> projects; 
+    
+    @OneToMany(mappedBy ="ratedBy", fetch=FetchType.LAZY)
+    private List<Rating> ratings;
+    
+    @OneToMany(mappedBy="postBy", fetch=FetchType.LAZY)
+    private List<Reply> userReplies;
+    
+    @OneToMany(mappedBy="commenter", fetch=FetchType.LAZY)
+    private List<Comment> userComments;
+    
+/************** Getters and Setters **************/    
     
 	public Long getId() {
 		return id;
@@ -147,19 +150,43 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getProjects() {
+	public List<Project> getProjects() {
 		return projects;
 	}
 
-	public void setProjects(String projects) {
+	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
+	
+	public List<Rating> getRatings() {
+		return ratings;
+	}
 
-	public String getSocial() {
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public List<Reply> getUserReplies() {
+		return userReplies;
+	}
+
+	public void setUserReplies(List<Reply> userReplies) {
+		this.userReplies = userReplies;
+	}
+
+	public List<Comment> getUserComments() {
+		return userComments;
+	}
+
+	public void setUserComments(List<Comment> userComments) {
+		this.userComments = userComments;
+	}
+
+	public List<String> getSocial() {
 		return social;
 	}
 
-	public void setSocial(String social) {
+	public void setSocial(List<String> social) {
 		this.social = social;
 	}
 
@@ -169,45 +196,5 @@ public class User {
 
 	public void setHomePage(String homePage) {
 		this.homePage = homePage;
-	}
-
-//	public List<Apartment> getApartments() {
-//		return apartments;
-//	}
-//
-//	public void setApartments(List<Apartment> apartments) {
-//		this.apartments = apartments;
-//	}
-//
-//	public List<Possible> getPossibles() {
-//		return possibles;
-//	}
-//
-//	public void setPossibles(List<Possible> possibles) {
-//		this.possibles = possibles;
-//	}
-	
-    
-//    @OneToMany(mappedBy ="readBy", fetch=FetchType.LAZY)
-//	private List<Star> stars;
-//    
-//    @OneToMany(mappedBy="responseBy", fetch=FetchType.LAZY)
-//    private List<Response> responses;
-    
-//    @OneToMany(mappedBy="connected", fetch=FetchType.LAZY)
-//    private List<Contact> user;
-    
-//    @ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="contact_id")
-//	private User contactUser;
-    
-//    @OneToMany(mappedBy="connectedUsers", fetch=FetchType.LAZY)
-//    private List<Contact> connections;
-//
-//	@OneToMany(mappedBy ="reader", fetch=FetchType.LAZY)
-//   	private List<ToRead> toBeRead;
-//    
-//    @OneToMany(mappedBy ="reader", fetch=FetchType.LAZY)
-//   	private List<Favorite> favorites;
-	
+	}	
 }
