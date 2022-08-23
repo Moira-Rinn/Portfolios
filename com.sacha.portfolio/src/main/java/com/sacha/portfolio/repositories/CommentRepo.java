@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sacha.portfolio.models.Reply;
+import com.sacha.portfolio.models.Comment;
 
 @Repository
-public interface ReplyRepo extends CrudRepository<Reply, Long> {
-	 List<Reply> findAll();
+public interface CommentRepo extends CrudRepository<Comment, Long> {
+	 List<Comment> findAll();
 }

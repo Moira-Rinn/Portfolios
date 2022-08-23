@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+
 import com.sacha.portfolio.models.Project;
 import com.sacha.portfolio.models.Rating;
+import com.sacha.portfolio.services.CommentService;
 import com.sacha.portfolio.services.ProjectService;
 import com.sacha.portfolio.services.RatingService;
+import com.sacha.portfolio.services.ReplyService;
 import com.sacha.portfolio.services.UserService;
 
 @Controller
@@ -30,6 +33,10 @@ public class ProjectController {
 	private RatingService ratingService;
 	@Autowired
 	private  UserService userService;
+	@Autowired
+	private ReplyService replyService;
+	@Autowired
+	private CommentService commentService;
 	
 // **********************POST ROUTES*************************
 	
@@ -87,7 +94,7 @@ public class ProjectController {
 		BindingResult res,
 		HttpServletRequest request
 		) {
-			model.addAttribute("proj", projectService.findById(id).orElseThrow(RuntimeException::new));
+			model.addAttribute("project", projectService.findById(id).orElseThrow(RuntimeException::new));
 			if(request.getSession().getAttribute("userId")!=null) 
 				return "projectDetails.jsp";
 			return "redirect:/";

@@ -186,7 +186,12 @@ public class Project {
 	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
-    
-    
-    
+
+	public List<Reply> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Reply> replies) {
+		this.replies = replies;
+	}
 }

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import com.sacha.portfolio.models.Rating;
+import com.sacha.portfolio.models.Comment;
 import com.sacha.portfolio.models.Reply;
 import com.sacha.portfolio.services.CommentService;
 import com.sacha.portfolio.services.ProjectService;
 import com.sacha.portfolio.services.ReplyService;
 
 @Controller
-public class ReplyController {
+public class CommentController {
 	
 	@Autowired
 	private ProjectService projectService;
@@ -34,10 +34,10 @@ public class ReplyController {
 	
 //ADD
 	
-	@PostMapping("/addReply/{id}")
-	public String addReply(
+	@PostMapping("/addComment/{id}")
+	public String addComment(
 		@Valid
-		@ModelAttribute("newReply") Reply newReply,
+		@ModelAttribute("newReply") Comment newComment,
 		@PathVariable("id") Long projId,
 		BindingResult results,
 		Model model
@@ -45,25 +45,25 @@ public class ReplyController {
 			model.addAttribute("project", projectService.findById(projId).orElseThrow(RuntimeException::new));
 			if(results.hasErrors()) 
 				return "projectDetails.jsp";
-			replyService.add(newReply);
+			commentService.add(newComment);
 			return "redirect:/project/details/" + projId;
 	}
 //UPDATE
 	
-	@PutMapping("/editReply/{id}")
-	public String editReply(
+	@PutMapping("/editComment/{id}")
+	public String editComment(
 		@Valid
-		@ModelAttribute("updateRating") Reply updateReply,
+		@ModelAttribute("updateComment") Comment updateComment,
 		BindingResult results,
 		@PathVariable("id") Long id,
 		Model model
 		) {
-			Reply reply = replyService.findById(id).orElseThrow(RuntimeException::new);
-			model.addAttribute("reply", reply);
+			Comment comment = commentService.findById(id).orElseThrow(RuntimeException::new);
+			model.addAttribute("comment", comment);
 			if(results.hasErrors()) 
 				return "projectDetails.jsp";
-			replyService.update(updateReply, id);
-			return "redirect:/project/details/" + reply.getRepliedTo().getId();
+			commentService.update(updateComment, id);
+			return "redirect:/project/details/" + comment.getCommentingOn().getRepliedTo().getId();
 	}
 //DELETE
 	
@@ -72,7 +72,7 @@ public class ReplyController {
 		@PathVariable("id" ) Long id, 
 		@PathVariable("projId") Long projId
 		){
-			replyService.delete(id);
+			commentService.delete(id);
 			return "redirect:/project/details/" + projId;
 	}
 }

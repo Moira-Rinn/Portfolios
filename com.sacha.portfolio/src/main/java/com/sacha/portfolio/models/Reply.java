@@ -28,8 +28,8 @@ public class Reply {
 	private Date dateCreated;
 	private Date dateModified;
 	
-	@OneToMany(mappedBy ="userComment", fetch=FetchType.LAZY)
-	private List<Comment> userComment;
+	@OneToMany(mappedBy ="commentingOn", fetch=FetchType.LAZY)
+	private List<Comment> comments;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")

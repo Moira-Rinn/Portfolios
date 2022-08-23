@@ -6,33 +6,33 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sacha.portfolio.models.Rating;
-import com.sacha.portfolio.repositories.RatingRepo;
+import com.sacha.portfolio.models.Reply;
+import com.sacha.portfolio.repositories.ReplyRepo;
 
 @Service
 public class ReplyService {
 	
 	@Autowired
-	private RatingRepo ratingRepository;
+	private ReplyRepo replyRepository;
 	
 //GET ALL
-	public List<Rating> all(){
-		return ratingRepository.findAll();
+	public List<Reply> all(){
+		return replyRepository.findAll();
 	}
 //GET ONE 
-	public Optional<Rating> findById(Long id) {
-		return ratingRepository.findById(id);
+	public Optional<Reply> findById(Long id) {
+		return replyRepository.findById(id);
 	}
 //ADD
-	public Rating add(Rating rating) {
-		return ratingRepository.save(rating);
+	public Reply add(Reply reply) {
+		return replyRepository.save(reply);
 	}
 //UPDATE
-	public Rating update(Rating rating, Long id) {
-		return ratingRepository.save(rating);
+	public Reply update(Reply reply, Long id) {
+		return replyRepository.save(reply);
 	}
 //DELETE
 	public void delete(Long id) {
-		ratingRepository.deleteById(id);
+		replyRepository.deleteById(id);
 	}
 }
