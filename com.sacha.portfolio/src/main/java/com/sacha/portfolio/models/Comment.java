@@ -25,6 +25,10 @@ public class Comment {
 	
 	private Date dateCreated;
 	private Date dateModified;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="portfolio_id")
+	private Portfolio portfolio;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")

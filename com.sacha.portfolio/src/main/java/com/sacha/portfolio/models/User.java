@@ -53,11 +53,15 @@ public class User {
     @NotBlank(message="Please Enter Valid Phone Number")
 	private String phone;
     
-    private List<String> social;
+    private String social;
+    
     private String homePage;
     
     @OneToMany(mappedBy="createdBy", fetch=FetchType.LAZY)
     private List<Project> projects; 
+    
+    @OneToMany(mappedBy ="creator", fetch=FetchType.LAZY)
+    private List<Portfolio> portfolios;
     
     @OneToMany(mappedBy ="ratedBy", fetch=FetchType.LAZY)
     private List<Rating> ratings;
@@ -182,11 +186,11 @@ public class User {
 		this.userComments = userComments;
 	}
 
-	public List<String> getSocial() {
+	public String getSocial() {
 		return social;
 	}
 
-	public void setSocial(List<String> social) {
+	public void setSocial(String social) {
 		this.social = social;
 	}
 

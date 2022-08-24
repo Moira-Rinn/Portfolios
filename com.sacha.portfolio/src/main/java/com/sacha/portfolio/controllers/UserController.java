@@ -1,5 +1,7 @@
 package com.sacha.portfolio.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -15,9 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sacha.portfolio.models.Project;
 //import com.sacha.portfolio.models.Creator;
 //import com.sacha.portfolio.models.Contact;
 import com.sacha.portfolio.models.User;
+import com.sacha.portfolio.services.CommentService;
+import com.sacha.portfolio.services.ReplyService;
 //import com.sacha.portfolio.services.CreatorService;
 import com.sacha.portfolio.services.UserService;
 import com.sacha.portfolio.validator.UserValidator;
@@ -28,8 +33,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-//	@Autowired
-//	private CreatorService creatorService;
+	@Autowired
+	private ReplyService replyService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@Autowired
 	private UserValidator userValidator;
@@ -84,7 +92,7 @@ public class UserController {
 		@RequestParam("social") String social,
 		@RequestParam("phone") String phone,
 		@RequestParam("homePage") String homePage,
-		@RequestParam("projects") String projects,
+		@RequestParam("projects") List<Project> projects,
 		@RequestParam("password") String password,
 		@PathVariable("id") Long id,
 		Model model,

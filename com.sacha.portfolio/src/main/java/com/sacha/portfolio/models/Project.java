@@ -47,9 +47,12 @@ public class Project {
     
     private String selectedImg;
     
-    private List<String> images;
+    private String images;
     
-    @OneToMany(mappedBy ="replies", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy ="project", fetch=FetchType.LAZY)
+    private List<Portfolio> portfolios;
+    
+    @OneToMany(mappedBy ="repliedTo", fetch=FetchType.LAZY)
     private List<Reply> replies;
     
     @OneToMany(mappedBy ="rated", fetch=FetchType.LAZY)
@@ -163,11 +166,11 @@ public class Project {
 		this.selectedImg = selectedImg;
 	}
 
-	public List<String> getImages() {
+	public String getImages() {
 		return images;
 	}
 
-	public void setImages(List<String> images) {
+	public void setImages(String images) {
 		this.images = images;
 	}
 

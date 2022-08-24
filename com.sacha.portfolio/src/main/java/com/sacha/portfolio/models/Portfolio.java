@@ -15,33 +15,33 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="replies")
-public class Reply {
+@Table(name="portfolios")
+public class Portfolio {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
 	@Size(min = 1, max = 255, message="Reply must be between 1-255 characters!")
-	private String reply;
+	private String description;
 	
+	private String thumbnail;
 	private Date dateCreated;
 	private Date dateModified;
 	
-	@OneToMany(mappedBy ="commentingOn", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="portfolio", fetch=FetchType.LAZY)
 	private List<Comment> comments;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="portfolio_id")
-	private Portfolio portfolio;
+	@OneToMany(mappedBy ="portfolio", fetch=FetchType.LAZY)
+	private List<Reply> replies;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private User postBy;
+	private User creator;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="project_id")
-	private Project repliedTo;
+	private Project project;
 
 /************** Getters and Setters **************/	
 	
@@ -53,12 +53,20 @@ public class Reply {
 		this.id = id;
 	}
 
-	public String getReply() {
-		return reply;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setReply(String reply) {
-		this.reply = reply;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public Date getDateCreated() {
@@ -85,19 +93,27 @@ public class Reply {
 		this.comments = comments;
 	}
 
-	public User getPostBy() {
-		return postBy;
+	public List<Reply> getReplies() {
+		return replies;
 	}
 
-	public void setPostBy(User postBy) {
-		this.postBy = postBy;
+	public void setReplies(List<Reply> replies) {
+		this.replies = replies;
 	}
 
-	public Project getRepliedTo() {
-		return repliedTo;
+	public User getCreator() {
+		return creator;
 	}
 
-	public void setRepliedTo(Project repliedTo) {
-		this.repliedTo = repliedTo;
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}	
 }

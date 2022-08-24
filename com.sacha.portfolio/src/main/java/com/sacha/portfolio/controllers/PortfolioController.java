@@ -1,6 +1,6 @@
 package com.sacha.portfolio.controllers;
 
-//import java.util.List;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,132 +17,135 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.sacha.portfolio.models.Comment;
+import com.sacha.portfolio.models.Portfolio;
 import com.sacha.portfolio.models.Project;
 import com.sacha.portfolio.models.Rating;
 import com.sacha.portfolio.models.Reply;
-//import com.sacha.portfolio.services.CommentService;
+import com.sacha.portfolio.services.CommentService;
+import com.sacha.portfolio.services.PortfolioService;
 import com.sacha.portfolio.services.ProjectService;
-import com.sacha.portfolio.services.RatingService;
-//import com.sacha.portfolio.services.ReplyService;
+import com.sacha.portfolio.services.ReplyService;
 import com.sacha.portfolio.services.UserService;
 
 @Controller
-public class ProjectController {
+public class PortfolioController {
 	
 	@Autowired 
-	private ProjectService projectService;
+	private PortfolioService portfolioService;
 	@Autowired 
-	private RatingService ratingService;
+	private ProjectService projectService;
+//	@Autowired 
+//	private RatingService ratingService;
 	@Autowired
 	private  UserService userService;
-//	@Autowired
-//	private ReplyService replyService;
-//	@Autowired
-//	private CommentService commentService;
+	@Autowired
+	private ReplyService replyService;
+	@Autowired
+	private CommentService commentService;
 	
 // **********************POST ROUTES*************************
 	
 //MAIN PAGE
-	@GetMapping("/project")
-	public String project(
+	@GetMapping("/portfolio")
+	public String portfolio(
 		Model model,
 		HttpServletRequest request
 		) {
 			if(request.getSession().getAttribute("userId")==null)
-				return "redirect:/project";
+				return "redirect:/";
 //			User user=userService.findById((Long)request.getSession().getAttribute("userId")); 
 			model.addAttribute("user", userService.findById((Long)request.getSession().getAttribute("userId")));
-			model.addAttribute("projects", projectService.all());
-			model.addAttribute("ratings", ratingService.all());
+			model.addAttribute("portfolios", portfolioService.all());
+//			model.addAttribute("ratings", ratingService.all());
 			return "index.jsp";
 	}
 	
 //ADD NEW PROJECT
 	
-	@GetMapping("/project/new")
-	public String newProject(
+	@GetMapping("/portfolio/new")
+	public String newProj(
 		@ModelAttribute("newProj") Project proj,
 //		@ModelAttribute("newRating") Rating newRating,
 		HttpServletRequest request
 		) {
 			if(request.getSession().getAttribute("userId")!=null)
 				return "editProject.jsp";
-			return "redirect:/project";
+			return "redirect:/";
 	}
 	
-//CREATE NEW PROJECT
+//CREATE NEW PORTFOLIO
 	
-	@PostMapping("/project/create")
-	public String addBook(
+	@PostMapping("/portfolio/create")
+	public String addPortfolio(
 		@Valid 
-		@ModelAttribute("newProj") Project proj, 
+		@ModelAttribute("newPort") Portfolio port, 
 		BindingResult results
 		) {
 			if(results.hasErrors()) 
 				return "editProject.jsp";
-			projectService.add(proj);
-			return "redirect:/project/details/"+ proj.getId();
+			portfolioService.add(port);
+			return "redirect:/portfolio/details/"+ port.getId();
 	}
 	
-//GET PROJECT DETAILS 
+//GET PORTFOLIO DETAILS 
 	
-	@GetMapping("/project/details/{id}")
-	public String projectDetails(
+	@GetMapping("/portfolio/details/{id}")
+	public String portfolioDetails(
 		@Valid
 		@PathVariable("id") Long id, 
-		@ModelAttribute("newRating") Rating newRating,
+//		@ModelAttribute("newRating") Rating newRating,
 		@ModelAttribute("newReply") Reply newReply,
 		@ModelAttribute("newComment") Comment newComment,
 		Model model, 
 		BindingResult res,
 		HttpServletRequest request
 		) {
-			model.addAttribute("project", projectService.findById(id).orElseThrow(RuntimeException::new));
+			model.addAttribute("portfolio", portfolioService.findById(id).orElseThrow(RuntimeException::new));
 			if(request.getSession().getAttribute("userId")!=null) 
-				return "projectDetails.jsp";
-			return "redirect:/project";
+				return "portfolioDetails.jsp";
+			return "redirect:/";
 	}
 	
 //EDIT / UPDATE PROJECT
 	
-	@GetMapping("/project/edit/{id}")
-	public String update(
+	@GetMapping("/portfolio/edit/{id}")
+	public String portfolioUpdate(
 		@PathVariable("id") Long id,
 		Model model,
 		HttpServletRequest request
 		) {
-			model.addAttribute("updateProj", projectService.findById(id).orElseThrow(RuntimeException::new));
+			model.addAttribute("updatePort", portfolioService.findById(id).orElseThrow(RuntimeException::new));
 			if(request.getSession().getAttribute("userId")!=null)
-				return "editProject.jsp";
-			return "redirect:/project";
+				return "editPortfolio.jsp";
+			return "redirect:/";
 	}
 	
-	@PutMapping("/project/update/{id}")
-	public String update(
+	@PutMapping("/portfolio/update/{id}")
+	public String portfolioUpdate(
 		@Valid 
-		@ModelAttribute("updateProj") Project updateProj, 
+		@ModelAttribute("updatePort") Portfolio updatePort, 
 		BindingResult result,
 		@PathVariable("id") Long id,
 		Model model
 		) {
 			if(result.hasErrors()) {
-				model.addAttribute("updateBook", projectService.findById(id).orElseThrow(RuntimeException::new));
+				model.addAttribute("updateBook", portfolioService.findById(id).orElseThrow(RuntimeException::new));
 				return "editProject.jsp";
 			}
-			this.projectService.update(updateProj, id);
-			return "redirect:/project";
+			this.portfolioService.update(updatePort, id);
+			return "redirect:/";
 	}
 	
 //DELETE PROJECT AND ASSOCIATED RATINGS
 	
-	@DeleteMapping("/project/delete/{id}")
-	public String delete(
+	@DeleteMapping("/portfolio/delete/{id}")
+	public String portfolioDelete(
 		@PathVariable("id") Long id
 		) {
 //			List<Rating> allRatings = ratingService.all();
 //			projectService.delete(allRatings, id);
-			projectService.delete(id);
-			return "redirect:/project";
+			portfolioService.delete(id);
+			return "redirect:/";
 
 	}
 }
