@@ -76,8 +76,9 @@ public class UserController {
 			userValidator.validate(user, results);
 			if(results.hasErrors()) {
 				model.addAttribute("user", userService.findById(user.getId()).orElseThrow(RuntimeException::new));
-				return "logReg.jsp";}
-					this.userService.registerUser(user);			
+				return "logReg.jsp";
+				}
+			this.userService.registerUser(user);
 			request.getSession().setAttribute("userId", user.getId());
 			request.getSession().setAttribute("userName", user.getUserName());
 			if(user.getIsCreator()) {
@@ -94,6 +95,7 @@ public class UserController {
 		@RequestParam("homePage") String homePage,
 		@RequestParam("projects") List<Project> projects,
 		@RequestParam("password") String password,
+		@RequestParam("password") String passwordConfirmation,
 		@PathVariable("id") Long id,
 		Model model,
 		HttpServletRequest request,
@@ -105,6 +107,7 @@ public class UserController {
 		creator.setPhone(phone);
 		creator.setProjects(projects);
 		creator.setSocial(social);
+		creator.setPasswordConfirmation(passwordConfirmation);
 		model.addAttribute("creator", creator);
 		if(userService.authenticateUser(creator.getEmail(), password)) {
 			this.userService.updateUser(creator, id);
@@ -143,7 +146,7 @@ public class UserController {
 	
 // **********************User Profile*************************
 	
-	@GetMapping("/resources/{id}/profile")
+	@GetMapping("/user/{id}/profile")
 	public String profile(
 //			@ModelAttribute("newContact") Contact contact,
 			@PathVariable("id") Long id,

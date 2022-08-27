@@ -8,7 +8,7 @@
 }
 body {
   	background: rgba(0, 0, 0, 0.9);
- 	margin: 0;
+ 	margin-top: 50px;
   	color: #000;
   	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -16,11 +16,19 @@ body {
 header {
 	margin-bottom: 2rem;
 }
+h3 {
+	margin: 10px;
+}
 
 a {
 	text-decoration: none;
-	color: #000;
-	margin: 3rem 1rem 0 1rem;
+	color: #fafafa;
+}
+.btn {
+	background: #333;
+	border-radius: 5px;
+	padding: .5rem;
+	margin: .5rem;
 }
 
 ul {

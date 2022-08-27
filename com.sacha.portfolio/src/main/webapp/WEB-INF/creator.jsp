@@ -27,10 +27,14 @@
 				    </div>
 				     <div class="column">
 				       <input class="input" id="homePage" name="homePage" placeholder="Home Page"/>
-				    <c:out value="${error}"/>
+				    <c:out value="${userId}"/>
 				    </div>
 				    	<div class="column">
 			            <input type="password" id="password" name="password" placeholder="Password"/>
+			        </div>
+			        </div>
+				    	<div class="column">
+			            <input type="hidden" id="passwordConfirmation" name="passwordConfirmation" value="Password"/>
 			        </div>
 			        <div>
 			        <input type="hidden" value="${userId}" name="id"/>

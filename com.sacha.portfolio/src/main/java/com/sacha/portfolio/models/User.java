@@ -36,6 +36,8 @@ public class User {
     
 	@Email
     private String email;
+	
+	private List<String> imgs;
     
 	private Boolean isCreator = false;
 	
@@ -47,10 +49,10 @@ public class User {
     @Transient
     private String passwordConfirmation;
     
-    @NotBlank(message="Please Enter An Address")
+//    @NotBlank(message="Please Enter An Address")
 	private String address;
 	
-    @NotBlank(message="Please Enter Valid Phone Number")
+//    @NotBlank(message="Please Enter Valid Phone Number")
 	private String phone;
     
     private String social;
@@ -114,6 +116,22 @@ public class User {
 		this.email = email;
 	}
 	
+	public List<String> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<String> imgs) {
+		this.imgs = imgs;
+	}
+
+	public List<Portfolio> getPortfolios() {
+		return portfolios;
+	}
+
+	public void setPortfolios(List<Portfolio> portfolios) {
+		this.portfolios = portfolios;
+	}
+
 	public Boolean getIsCreator() {
 		return isCreator;
 	}

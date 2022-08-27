@@ -19,11 +19,15 @@ public class UserValidator implements Validator{
 		return User.class.equals(clazz);
 	}
 	@Override
-	public void validate(Object target, Errors errors) {	
+	public void validate(Object target, Errors errors) {
+		
 		User user=(User) target;
-		if(!user.getPasswordConfirmation().equals(user.getPassword())) 
-			errors.rejectValue("password","Match","Invalid Registration");
-		if(this.uRepo.findByEmail(user.getEmail()) != null)
-			errors.rejectValue("email","unique","Email address exists!");
+		
+		if(!user.getPasswordConfirmation().equals(user.getPassword())) {
+			System.out.println("error here...");
+			errors.rejectValue("password","Match","Invalid Registration");}
+		if(this.uRepo.findByEmail(user.getEmail()) != null) {
+			System.out.println("error here...");
+			errors.rejectValue("email","unique","Email address exists!");}
 	}
 }

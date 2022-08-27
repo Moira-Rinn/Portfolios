@@ -6,10 +6,9 @@
 				<nav class="nav">
 					<h3 class="title">Welcome to Portfolios, <c:out value="${userName}"/></h3>
 					<div class="wrapper">
-						<a href="/books">Home</a>
-						<a href="/books/new">Profile</a>
+						<a href="/">Home</a>
+						<a href="/user/${userId}/profile">Profile</a>
 						<a href="/logout">Logout</a>
-					</div>
 				</nav>
 			</c:when>
 			<c:otherwise>
